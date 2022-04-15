@@ -1,16 +1,22 @@
 * {
-  margin: 0
+  margin: 0;
+  box-sizing: border-box;
 }
+
 body {
   background-color: #f2f3f8;
 }
+
 .app {
   display: flex;
   justify-content: space-evenly;
+  padding: 1rem;
 }
+
 .app__left {
   flex: 0.9;
 }
+
 .app__header {
   display: flex;
   justify-content: space-between;
@@ -21,6 +27,14 @@ body {
 @media(max-width: 990px) {
   .app {
     flex-direction: column;
+  }
+
+  .app__left {
+    flex: 1;
+  }
+
+  .app__right {
+    margin-top: 20px;
   }
 }
 

@@ -5,3 +5,10 @@
 .infoBox:not(:last-child) {
     margin-right: 15px;
 }
+
+@media(max-width: 481px) {
+    .infoBox {
+        margin-right: 0 !important;
+        margin-bottom: 15px;
+    }
+}

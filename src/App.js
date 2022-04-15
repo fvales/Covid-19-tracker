@@ -2,7 +2,7 @@ import './App.css';
 import { Card, CardContent } from '@mui/material';
 import { useEffect, useState } from 'react';
 import Map from './Chart/Map'
-import { ApiConst } from './constants';
+import { AppConst } from './constants';
 import Stats from './Stats/stats'
 import Header from './Header';
 import Table from './Table';
@@ -12,14 +12,16 @@ import LineGraph from './Chart/LineGraph';
 function App() {
 
   const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState(ApiConst.WORLDWIDE);
+  const [selectedCountry, setSelectedCountry] = useState(AppConst.WORLDWIDE);
   const [isCountriesLoading, setIsCountriesLoading] = useState(false)
   const [countryInfo, setCountryInfo] = useState('')
   const [countriesInfo, setCountriesInfo] = useState([])
+  const [position, setPosition] = useState([20, 77])
+  const [mapCountries, setMapCountries] = useState([])
 
   const getCountries = async () => {
     setIsCountriesLoading(true)
-    await fetch(process.env.REACT_APP_URL + ApiConst.COUNTRIES)
+    await fetch(process.env.REACT_APP_URL + AppConst.COUNTRIES)
       .then(response => response.json())
       .then(data => {
         const countries = data.map((countryData) => ({
@@ -28,15 +30,17 @@ function App() {
         }));
         setCountriesInfo(Utils.sortCountriesByCases(data))
         setCountries(countries)
+        setMapCountries(data)
       }).finally(setIsCountriesLoading(false))
   }
 
   const getcountryInfo = async (countryCode) => {
-    const endpoint = countryCode === ApiConst.WORLDWIDE ? ApiConst.ALL : ApiConst.COUNTRIES + ApiConst.ROOT_PATH + countryCode
+    const endpoint = countryCode === AppConst.WORLDWIDE ? AppConst.ALL : AppConst.COUNTRIES + AppConst.ROOT_PATH + countryCode
     await fetch(process.env.REACT_APP_URL + endpoint)
       .then(response => response.json())
       .then(data => {
         setCountryInfo(data)
+        countryCode !== AppConst.WORLDWIDE && setPosition([data?.countryInfo?.lat, data?.countryInfo?.long])
       })
   }
 
@@ -63,7 +67,7 @@ function App() {
         <Stats countryInfo={countryInfo} />
 
         {/* Map */}
-        <Map />
+        <Map position={position} countries={mapCountries} caseType={AppConst.CASES} />
       </div>
 
       <div className='app__right'>

@@ -1,4 +1,10 @@
 .stats {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media(max-width: 481px) {
+  .stats {
+    flex-direction: column;
   }
+}

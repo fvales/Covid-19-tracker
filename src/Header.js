@@ -12,7 +12,7 @@ function Header({ isCountriesLoading, countries, onCountryChange, selectedCountr
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={selectedCountry}
-                            label="Age"
+                            label=""
                             onChange={onCountryChange}
                         >
                             <MenuItem value={'worldwide'}>Worldwide</MenuItem>

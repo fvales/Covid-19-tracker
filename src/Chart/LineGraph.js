@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Line } from 'react-chartjs-2'
-import { ApiConst } from '../constants';
+import { AppConst } from '../constants';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -61,7 +61,7 @@ function LineGraph() {
 
     const getHistoricalCovidData = async (lastDays) => {
         const chartData = [];
-        await fetch(process.env.REACT_APP_URL + ApiConst.HISTORICAL + ApiConst.ALL + '?lastDays=' + lastDays)
+        await fetch(process.env.REACT_APP_URL + AppConst.HISTORICAL + AppConst.ALL + '?lastDays=' + lastDays)
             .then(response => response.json())
             .then(data => {
                 let lastDatePoint;
