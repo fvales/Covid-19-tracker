@@ -18,6 +18,7 @@ function App() {
   const [countriesInfo, setCountriesInfo] = useState([])
   const [position, setPosition] = useState([20, 77])
   const [mapCountries, setMapCountries] = useState([])
+  const [caseType, setCaseType] = useState(AppConst.CASES)
 
   const getCountries = async () => {
     setIsCountriesLoading(true)
@@ -64,10 +65,10 @@ function App() {
         <Header isCountriesLoading={isCountriesLoading} onCountryChange={onCountryChange} countries={countries} selectedCountry={selectedCountry} />
 
         {/* Stats */}
-        <Stats countryInfo={countryInfo} />
+        <Stats countryInfo={countryInfo} setCaseType={(value) => setCaseType(value)} />
 
         {/* Map */}
-        <Map position={position} countries={mapCountries} caseType={AppConst.CASES} />
+        <Map position={position} countries={mapCountries} caseType={caseType} />
       </div>
 
       <div className='app__right'>

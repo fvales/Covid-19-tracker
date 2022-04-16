@@ -6,7 +6,7 @@ import './InfoBox.css'
 function InfoBox(props) {
     const { title, cases, total, caseType } = props
     return (
-        <Card className="infoBox">
+        <Card className="infoBox" onClick={() => props.setCaseType(caseType)}>
             <CardContent>
                 <Typography className="infoBox__title" color="textSecondary">
                     {title}
