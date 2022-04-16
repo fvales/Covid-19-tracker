@@ -56,7 +56,7 @@ const OPTIONS = {
     },
 };
 
-function LineGraph() {
+function LineGraph({ caseType }) {
     const [data, setData] = useState([]);
 
     const getHistoricalCovidData = async (lastDays) => {
@@ -65,23 +65,22 @@ function LineGraph() {
             .then(response => response.json())
             .then(data => {
                 let lastDatePoint;
-                for (let date in data.cases) {
-                    if (lastDatePoint) {
+                for (let date in data[caseType]) {
+                    if (!isNaN(lastDatePoint)) {
                         chartData.push({
                             x: date,
-                            y: data.cases[date] - lastDatePoint
+                            y: data[caseType][date] - lastDatePoint
                         })
                     }
-                    lastDatePoint = data['cases'][date]
+                    lastDatePoint = data[caseType][date]
                 }
-                console.log(chartData)
                 setData(chartData)
             })
     }
 
     useEffect(() => {
         getHistoricalCovidData(LAST_DAYS)
-    }, [])
+    }, [caseType])
 
     return (
         <div>

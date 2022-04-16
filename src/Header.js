@@ -17,7 +17,7 @@ function Header({ isCountriesLoading, countries, onCountryChange, selectedCountr
                         >
                             <MenuItem value={'worldwide'}>Worldwide</MenuItem>
                             {
-                                countries?.map((country) => <MenuItem value={country?.value}>{country?.name}</MenuItem>)
+                                countries?.map((country, index) => <MenuItem key={'menu_' + index} value={country?.value}>{country?.name}</MenuItem>)
                             }
                         </Select>
                     </FormControl>

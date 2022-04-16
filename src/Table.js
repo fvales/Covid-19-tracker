@@ -4,11 +4,11 @@ function Table({ countries }) {
     return (
         <div className='table'>
             {
-                countries?.map(({ country, cases }) => {
-                    return <tr>
-                        <td>{country}</td>
-                        <td>{cases}</td>
-                    </tr>
+                countries?.map(({ country, cases, countryInfo }) => {
+                    return <div key={country + '_' + countryInfo.iso2}>
+                        <span>{country}</span>
+                        <span>{cases}</span>
+                    </div>
                 })
             }
         </div>

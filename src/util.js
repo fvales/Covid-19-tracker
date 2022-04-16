@@ -7,8 +7,9 @@ export const Utils = {
     },
 
     showDataOnMap: (data, caseType) => {
-        return data.map((country) => {
+        return data.map((country, index) => {
             return <Circle
+                key={'map_' + index}
                 center={[country?.countryInfo?.lat, country?.countryInfo?.long]}
                 fillOpacity={0.4}
                 fillColor={AppConst.getConfByCaseType[caseType].hex}
