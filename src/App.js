@@ -57,7 +57,6 @@ function App() {
     const countryCode = event.target?.value;
     setSelectedCountry(countryCode)
   }
-
   return (
     <div className="app">
       <div className='app__left'>
